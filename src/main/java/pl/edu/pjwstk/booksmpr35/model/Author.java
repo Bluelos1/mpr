@@ -1,20 +1,25 @@
 package pl.edu.pjwstk.booksmpr35.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
 public class Author {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "firstname")
     private String firstName;
+    @Column
     private String lastName;
-    private LocalDate dateOfBirth;
+
 
     public Author() {
     }
 
-    public Author(String firstName, String lastName, LocalDate dateOfBirth) {
+    public Author(Long id,String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
     }
 
     public void setId(Long id) {
@@ -33,7 +38,5 @@ public class Author {
         return lastName;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
+
 }

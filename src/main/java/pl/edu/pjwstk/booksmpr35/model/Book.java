@@ -1,16 +1,28 @@
 package pl.edu.pjwstk.booksmpr35.model;
 
+import com.sun.xml.bind.v2.runtime.Name;
 import pl.edu.pjwstk.booksmpr35.model.enums.BookType;
 
+import javax.persistence.*;
 import java.time.LocalDate;
-
+@Entity
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String title;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "author_id")
     private Author author;
+    @Column
+    @Enumerated(EnumType.STRING)
     private BookType bookType;
+    @Column
     private LocalDate publishDate;
+    @Column
     private String publisher;
+
 
     public Book() {
     }
